@@ -107,7 +107,7 @@ class UnusedL10nVisitor extends RecursiveAstVisitor<void> {
 
   bool _matchExtension(Expression? target) =>
       target is PrefixedIdentifier &&
-      target.staticElement?.enclosingElement is ExtensionElement;
+      target.staticElement?.enclosingElement3 is ExtensionElement;
 
   bool _matchStaticGetter(Expression? target) =>
       target is PrefixedIdentifier &&
@@ -142,14 +142,14 @@ class UnusedL10nVisitor extends RecursiveAstVisitor<void> {
     String name,
   ) {
     final staticElement =
-        target.constructorName.staticElement?.enclosingElement;
+        target.constructorName.staticElement?.enclosingElement3;
 
     _tryAddInvocation(staticElement, name);
   }
 
   void _addMemberInvocationOnAccessor(SimpleIdentifier target, String name) {
     final staticElement =
-        target.staticElement?.enclosingElement as ExtensionElement;
+        target.staticElement?.enclosingElement3 as ExtensionElement;
 
     for (final element in staticElement.accessors) {
       if (_classPattern.hasMatch(element.returnType.toString())) {

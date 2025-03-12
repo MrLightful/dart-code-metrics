@@ -53,9 +53,11 @@ class AnalyzerPlugin extends ServerPlugin {
     final file = location.getChildAssumingFile('uuid');
     if (!file.exists) {
       uuid = const Uuid().v4();
-      file
-        ..createSource(file.toUri())
-        ..writeAsStringSync(uuid);
+      // TODO: can i comment this?
+      // if (!file.existsSync()) {
+      //   file.createSync();
+      // }
+      file.writeAsStringSync(uuid);
     } else {
       uuid = file.readAsStringSync();
     }
